@@ -2,7 +2,7 @@
   "name": "Laravel Development with PHP 8.3 & MySQL",
   "dockerComposeFile": "docker-compose.yml",
   "service": "laravel-app",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "shutdownAction": "stopCompose",
   
   "features": {
@@ -54,15 +54,23 @@
     }
   },
 
-  "forwardPorts": [8000, 3306, 80, 443],
+  "forwardPorts": [8000, 3306, 80, 443, 5173],
   "portsAttributes": {
     "8000": {
       "label": "Laravel Dev Server",
-      "onAutoForward": "notify"
+      "onAutoForward": "openPreview"
     },
     "3306": {
       "label": "MySQL",
       "onAutoForward": "ignore"
+    },
+    "80": {
+      "label": "Nginx Web Server",
+      "onAutoForward": "openPreview"
+    },
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "openPreview"
     }
   },
 

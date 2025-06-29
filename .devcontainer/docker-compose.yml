@@ -6,11 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: laravel-dev
-    working_dir: /workspace
+    working_dir: /workspaces/${localWorkspaceFolderBasename}
     volumes:
-      - ..:/workspace:cached
-      - /workspace/vendor
-      - /workspace/node_modules
+      - ..:/workspaces/${localWorkspaceFolderBasename}:cached
+      - /workspaces/${localWorkspaceFolderBasename}/allhub/vendor
+      - /workspaces/${localWorkspaceFolderBasename}/allhub/node_modules
     ports:
       - "8000:8000"
       - "5173:5173"  # Vite dev server

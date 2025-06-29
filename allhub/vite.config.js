@@ -8,4 +8,13 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+            host: process.env.CODESPACE_NAME 
+                ? `${process.env.CODESPACE_NAME}-5173.app.github.dev` 
+                : 'localhost'
+        }
+    }
 });

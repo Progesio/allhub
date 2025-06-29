@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Setting up Laravel development environment..."
+echo "🚀 Setting up Laravel development environment for GitHub Codespaces..."
 
 # Wait for MySQL to be ready
 echo "⏳ Waiting for MySQL to be ready..."
@@ -12,7 +12,7 @@ done
 echo "✅ MySQL is ready!"
 
 # Navigate to the Laravel project directory
-cd /workspace/allhub
+cd /workspaces/allhub/allhub
 
 # Install PHP dependencies
 echo "📦 Installing Composer dependencies..."
@@ -64,17 +64,17 @@ php artisan storage:link
 
 # Set permissions
 echo "🔐 Setting permissions..."
-sudo chown -R vscode:vscode /workspace
-sudo chmod -R 755 /workspace/allhub/storage
-sudo chmod -R 755 /workspace/allhub/bootstrap/cache
+sudo chown -R vscode:vscode /workspaces/allhub
+sudo chmod -R 755 /workspaces/allhub/allhub/storage
+sudo chmod -R 755 /workspaces/allhub/allhub/bootstrap/cache
 
 echo "✨ Laravel development environment setup complete!"
 echo ""
 echo "🌐 Access points:"
-echo "   Laravel App: http://localhost:8000 (php artisan serve)"
-echo "   Nginx:       http://localhost:80"
-echo "   phpMyAdmin:  http://localhost:8080"
-echo "   MySQL:       localhost:3306"
+echo "   Laravel App: https://$CODESPACE_NAME-8000.app.github.dev (php artisan serve)"
+echo "   Nginx:       https://$CODESPACE_NAME-80.app.github.dev"
+echo "   phpMyAdmin:  https://$CODESPACE_NAME-8080.app.github.dev"
+echo "   Vite:        https://$CODESPACE_NAME-5173.app.github.dev"
 echo ""
 echo "📝 Database credentials:"
 echo "   Host: mysql (or localhost from host machine)"
@@ -86,4 +86,4 @@ echo "🚀 To start Laravel development server:"
 echo "   php artisan serve --host=0.0.0.0 --port=8000"
 echo ""
 echo "🎨 To start Vite development server:"
-echo "   npm run dev"
+echo "   npm run dev -- --host=0.0.0.0"

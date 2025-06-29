@@ -40,16 +40,18 @@ COPY .devcontainer/nginx/default.conf /etc/nginx/sites-available/default
 # Configure Supervisor
 COPY .devcontainer/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Create user for Laravel
+# Create user for Laravel (GitHub Codespaces compatible)
 RUN groupadd --gid 1000 vscode \
-    && useradd --uid 1000 --gid vscode --shell /bin/bash --create-home vscode
+    && useradd --uid 1000 --gid vscode --shell /bin/bash --create-home vscode \
+    && usermod -aG sudo vscode \
+    && echo 'vscode ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Set working directory
-WORKDIR /workspace
+WORKDIR /workspaces
 
 # Set permissions
-RUN chown -R vscode:vscode /workspace \
-    && chmod -R 755 /workspace
+RUN chown -R vscode:vscode /workspaces \
+    && chmod -R 755 /workspaces
 
 # Copy PHP configuration
 COPY .devcontainer/php/php.ini /usr/local/etc/php/conf.d/laravel.ini
